@@ -5,7 +5,7 @@
  */
 export function createGetter(path) {
 
-  const [...pathParts] = path.split('.');
+  const pathParts = path.split('.');
 
   return function (product) {
     let result = pathParts.length ? product : null;
