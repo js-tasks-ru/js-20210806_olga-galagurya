@@ -5,4 +5,17 @@
  */
 export function createGetter(path) {
 
+  const pathParts = path.split('.');
+
+  return function (product) {
+    let result = pathParts.length ? product : null;
+
+    for (let item of pathParts) {
+      if (!(item in result)) {
+        return;
+      }
+      result = result[item];
+    }
+    return result;
+  };
 }
