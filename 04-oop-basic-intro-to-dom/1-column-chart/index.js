@@ -1,11 +1,13 @@
 export default class ColumnChart {
+  chartHeight = 50;
+
   constructor(options = {}) {
     this.data = options.data ?? [];
     this.label = options.label;
     this.value = options.value;
     this.link = options.link;
     this.formatHeading = options.formatHeading;
-    this.chartHeight = options.chartHeight || 50;
+
     this.render();
   }
 
@@ -37,7 +39,7 @@ export default class ColumnChart {
 
   renderColumns() {
     const max = Math.max(...this.data);
-    const scale = 50 / max;
+    const scale = this.chartHeight / max;
     const columnChart = [];
 
     for (let item of this.data) {
