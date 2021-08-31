@@ -1,6 +1,7 @@
 class Tooltip {
   static instance;
   element;
+  isInitialized = false;
 
   onPointerOver = (event) => {
     let currentElement = event.target.closest('[data-tooltip]');
@@ -34,6 +35,11 @@ class Tooltip {
   }
 
   initialize() {
+    if (this.isInitialized) {
+      return;
+    }
+
+    this.isInitialized = true;
     document.addEventListener('pointerover', this.onPointerOver);
     document.addEventListener('pointerout', this.onPointerOut);
   }
@@ -58,6 +64,9 @@ class Tooltip {
 
   destroy() {
     this.remove();
+    this.isInitialized = false;
+    document.removeEventListener('pointerover', this.onPointerOver);
+    document.removeEventListener('pointerout', this.onPointerOut);
   }
 }
 
