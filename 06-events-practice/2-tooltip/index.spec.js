@@ -1,4 +1,5 @@
 import tooltip from './index.js';
+import Tooltip from "./index";
 
 describe('events-practice/tooltip', () => {
   const tooltip = new Tooltip();
