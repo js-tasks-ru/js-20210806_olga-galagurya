@@ -5,7 +5,6 @@ const BACKEND_URL = 'https://course-js.javascript.ru';
 export default class ColumnChart {
   chartHeight = 50;
   data;
-  mainUrl = 'https://course-js.javascript.ru/';
   element;
   subElements;
 
@@ -60,7 +59,7 @@ export default class ColumnChart {
   }
 
   async update(from, to) {
-    let url = new URL(this.url, this.mainUrl);
+    let url = new URL(this.url, BACKEND_URL);
 
     url.searchParams.set('from', from && from.toISOString());
     url.searchParams.set('to', to && to.toISOString());
