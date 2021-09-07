@@ -116,12 +116,21 @@ export default class SortableTable {
     this.elementArrow = elementArrow.firstElementChild;
   }
 
+  getTemplateEmpty() {
+    return `
+      <div data-elem="emptyPlaceholder" class="sortable-table__empty-placeholder">
+        <div>Нет данных</div>
+      </div>
+    `;
+  }
+
   getTemplateContent() {
     return `
       <div data-element="productsContainer" class="products-list__container">
-        <div class="sortable-table">
+        <div data-element="tableContainer" class="sortable-table sortable-table_empty">
             ${this.getTemplateHeader()}
             ${this.getTemplateBody()}
+            ${this.getTemplateEmpty()}
         </div>
       </div>
     `;
@@ -236,6 +245,9 @@ export default class SortableTable {
   }
 
   update(data) {
+    if (data.length) {
+      this.subElements.tableContainer.classList.remove('sortable-table_empty');
+    }
     this.subElements.body.innerHTML = this.getTemplateBodyCell(data);
   }
   appendCell (data) {
