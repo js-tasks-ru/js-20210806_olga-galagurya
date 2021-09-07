@@ -1,6 +1,7 @@
 import ColumnChart from './index.js';
 
 import ordersData from "./__mocks__/orders-data.js";
+import fetchMock from 'jest-fetch-mock';
 
 describe('async-code-fetch-api-part-1/column-chart', () => {
   let columnChart;
